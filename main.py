@@ -57,9 +57,17 @@ def load_and_process_subtitles(directory="dataset"):
     
     # 🔹 Use Sentence-BERT Embeddings
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+
+    # Ensure a persistent directory exists
+    CHROMA_DB_DIR = "./chroma_db"  # ✅ Change if needed
+    os.makedirs(CHROMA_DB_DIR, exist_ok=True)
+
     
-    # 🔹 Store embeddings in ChromaDB
-    db = Chroma.from_documents(texts, embeddings)
+    #  Store embeddings in ChromaDB
+    # Initialize ChromaDB with persistence
+    db = Chroma.from_documents(texts, embeddings, persist_directory=CHROMA_DB_DIR)
+    db.persist()  # ✅ Ensure data is saved
+    
     return db
 
 # ✅ Query LLM for additional context

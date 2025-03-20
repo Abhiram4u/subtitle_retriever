@@ -10,7 +10,10 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains import RetrievalQA
 import whisper
 
-
+# ✅ Fix for ChromaDB sqlite3 issue
+import sys
+import pysqlite3
+sys.modules["sqlite3"] = pysqlite3
 
 # ✅ Load Whisper model
 def load_whisper_model():

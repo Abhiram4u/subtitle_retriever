@@ -1,0 +1,13 @@
+streamlit
+pandas
+torch
+torchaudio
+openai-whisper
+whisper
+langchain
+langchain-community
+langchain-google-genai
+langchain-huggingface
+chromadb
+sentence-transformers
+google-generativeai

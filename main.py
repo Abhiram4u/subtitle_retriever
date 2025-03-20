@@ -9,6 +9,13 @@ from langchain_community.vectorstores import Chroma
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains import RetrievalQA
 import whisper
+import asyncio  # ✅ Added for handling async errors
+
+# ✅ Fix "no running event loop" error in Streamlit
+try:
+    asyncio.get_running_loop()
+except RuntimeError:
+    asyncio.run(asyncio.sleep(0))
 
 # ✅ Fix for ChromaDB sqlite3 issue
 import sys
